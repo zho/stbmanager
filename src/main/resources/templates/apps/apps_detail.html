@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>APP Details</title>
+</head>
+<body>
+<section layout:fragment="contentHeader">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>APP Details</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item active"><a href="/admin">Dashboard</a></li>
+                    <li class="breadcrumb-item active"><a href="/admin">APP Details</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section layout:fragment="content">
+    <div class="container-fluid">
+        <div class="card card-success">
+            <div class="card-header">
+                <h3 class="card-title">APP Details</h3>
+            </div>
+            <form th:action="${'/admin/apps/' + detail.getId()}" method="post">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select name="category" id="category" class="form-control" required>
+                            <option value=""></option>
+                            <option th:each="item : ${catList}"
+                                    th:value="${item.getId()}"
+                                    th:selected="${item.getId() == detail.getCategory()?.getId()}"
+                                    th:text="${item.getName()}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="appName">App Name</label>
+                        <input type="text" class="form-control" id="appName" name="appName" required th:value="${detail.getName()}">
+                    </div>
+                    <div class="form-group">
+                        <label for="apkID">APK ID</label>
+                        <input type="text" class="form-control" id="apkID" name="apkID" required th:value="${detail.getApkid()}">
+                    </div>
+                    <div class="form-group">
+                        <label for="apkURL">APK URL</label>
+                        <input type="text" class="form-control" id="apkURL" name="apkURL" required th:value="${detail.getApk()}">
+                    </div>
+                    <div class="form-group">
+                        <label for="apkVersion">APK Version</label>
+                        <input type="text" class="form-control" id="apkVersion" name="apkVersion" required th:value="${detail.getVersion()}">
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="install" name="install" value="True" th:checked="${detail.getFinstall() == 'True'}">
+                        <label for="install">Install</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="update" name="update" value="True" th:checked="${detail.getFupdate() == 'True'}">
+                        <label for="update">Update</label>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<script layout:fragment="script-area">
+</script>
+</body>
+</html>

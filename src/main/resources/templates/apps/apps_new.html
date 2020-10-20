@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Apps</title>
+</head>
+<body>
+<section layout:fragment="contentHeader">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Add New Apps</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item active"><a href="/admin">Add New Apps</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section layout:fragment="content">
+    <div class="container-fluid">
+        <div class="card card-success">
+            <div class="card-header">
+                <h3 class="card-title">App Details</h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <form th:action="${'/admin/apps/new'}" method="post">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select name="category" id="category" class="form-control" required>
+                            <option value=""></option>
+                            <option th:each="item : ${catList}"
+                                    th:value="${item.getId()}" th:text="${item.getName()}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="appName">App Name</label>
+                        <input type="text" class="form-control" id="appName" name="appName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apkID">APK ID</label>
+                        <input type="text" class="form-control" id="apkID" name="apkID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apkURL">APK URL</label>
+                        <input type="text" class="form-control" id="apkURL" name="apkURL" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apkVersion">APK Version</label>
+                        <input type="text" class="form-control" id="apkVersion" name="apkVersion" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="install" name="install" value="True">
+                        <label for="install">Install</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="update" name="update" value="True">
+                        <label for="update">Update</label>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<script layout:fragment="script-area">
+    $('select').select2();
+</script>
+</body>
+</html>

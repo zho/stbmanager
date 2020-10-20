@@ -1,0 +1,20 @@
+{
+  "name": "static",
+  "homepage": "https://github.com/zho/stbmanager",
+  "authors": [
+    "zho <joandi@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "adminlte": "^3.0.5"
+  }
+}

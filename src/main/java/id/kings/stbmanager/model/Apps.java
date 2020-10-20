@@ -1,13 +1,13 @@
 package id.kings.stbmanager.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Apps {
 
   @Id
-  private Long id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
   private String name;
   private String apk;
   private String apkid;
@@ -15,12 +15,14 @@ public class Apps {
   private String finstall;
   private String fupdate;
 
+  @ManyToOne
+  private Category category;
 
-  public Long getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -78,4 +80,11 @@ public class Apps {
     this.fupdate = fupdate;
   }
 
+  public Category getCategory() {
+    return category;
+  }
+
+  public void setCategory(Category category) {
+    this.category = category;
+  }
 }
